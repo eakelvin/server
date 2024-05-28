@@ -7,3 +7,5 @@ const {
 
 router.post('/create', createConsultation)
 router.get('/all', AllConsultations)
+
+module.exports = router;

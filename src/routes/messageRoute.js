@@ -9,4 +9,4 @@ const {
 router.post('/create', createMessage)
 router.get('/all', getAllMessages )
 
-module.exports = router
+module.exports = router;
