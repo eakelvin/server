@@ -5,7 +5,8 @@ const createConsultation = async(req, res) => {
         const consult = await Consultation.create(req.body)
         res.status(201).json(consult)
     } catch (error) {
-        res.status(500).json({ error: 'Internal Server Error' });
+        // res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: 'Internal Server Error', details: error.message });
     }
 }
 
