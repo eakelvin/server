@@ -26,7 +26,7 @@ server.use(`${api}/messages`, message);
 server.use(`${api}/consultations`, consultation);
 server.use(`${api}/products`, product)
 
-server.use('/', (req, res) => {
+server.get('/', (req, res) => {
     res.send('Live Server')
 });
 
