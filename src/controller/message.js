@@ -5,9 +5,10 @@ const createMessage = async(req, res) => {
         const message = await Message.create(req.body)
         res.status(201).json(message)
     } catch (error) {
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: error.message });
+        // res.status(500).json({ error: 'Internal Server Error' });
     }
-}
+};
 
 const getAllMessages = async(req, res) => {
     try {
@@ -16,6 +17,6 @@ const getAllMessages = async(req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Server Error'})
     }
-}
+};
 
 module.exports = { createMessage, getAllMessages }
