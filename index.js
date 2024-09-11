@@ -15,6 +15,7 @@ const message = require('./src/routes/messageRoute');
 const consultation = require('./src/routes/consultation');
 const product = require('./src/routes/product');
 const file = require('./src/routes/file');
+const subscribe = require('./src/routes/subscribe');
 
 connectDatabase();
 server.use(cors());
@@ -24,6 +25,7 @@ server.use(cookieParser());
 
 server.use(`${api}/users`, user);
 server.use(`${api}/messages`, message);
+server.use(`${api}/subscribe`, subscribe);
 server.use(`${api}/consultations`, consultation);
 server.use(`${api}/products`, product);
 server.use(`${api}/files`, file);
