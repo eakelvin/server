@@ -9,6 +9,8 @@ const CompanySchema = new mongoose.Schema(
       enum: ["Exchange Rates", "Fuel"],
     },
     logo: { type: String },
+    warning: { type: String, default: null },
+    promotion: { type: String, default: null },
   },
   { timestamps: true }
 );

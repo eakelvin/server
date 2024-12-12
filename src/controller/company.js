@@ -1,4 +1,5 @@
 const Company = require("../models/company");
+const { getCompanyStatus } = require("../utils/company");
 
 const createCompany = async (req, res) => {
   try {
@@ -13,8 +14,12 @@ const createCompany = async (req, res) => {
 
 const allCompanies = async (req, res) => {
   try {
-    const company = await Company.find();
-    res.json(company);
+    const companies = await Company.find();
+    const companyWithStatus = companies.map((company) => ({
+      ...company.toObject(),
+      status: getCompanyStatus(company),
+    }));
+    res.json(companyWithStatus);
   } catch (error) {
     res.status(500).json({
       error: "Server Error",
