@@ -34,7 +34,7 @@ server.use(`${api}/files`, express.static("files"));
 server.use(`${api}/company`, company);
 
 server.get("/", (req, res) => {
-  res.send("Live Server");
+  res.send("Live Test Server");
 });
 
 server.use(notFound);
