@@ -15,11 +15,6 @@ const createCompany = async (req, res) => {
 const allCompanies = async (req, res) => {
   try {
     const companies = await Company.find();
-    // const companyWithStatus = companies.map((company) => ({
-    //   ...company.toObject(),
-    //   status: getCompanyStatus(company),
-    // }));
-    // res.json(companyWithStatus);
     res.json(companies);
   } catch (error) {
     res.status(500).json({
@@ -57,23 +52,26 @@ const addCompanyIcon = async (req, res) => {
     throw new Error("Company doesn't exist");
   }
 
-  if (!company.IconType) {
-    company.IconType = {
-      warning: { value: 1, note: null },
-      promotion: { value: 2, note: null },
-      newListing: { value: 3, note: null },
-      bestRates: { value: 4 },
-      topRates: { value: 5 },
-      trending: { value: 6 },
-    };
+  if (!company.iconType) {
+    company.iconType = {};
   }
 
-  company.IconType[iconKey] = { value: iconType, note };
+  if (iconKey === "newListing") {
+    company.iconType[iconKey] = { value: iconType, date: new Date() };
+  } else {
+    company.iconType[iconKey] = { value: iconType, note };
+  }
+
   await company.save();
+
+  const filteredIcons = Object.fromEntries(
+    Object.entries(company.iconType).filter(([_, data]) => data?.value)
+  );
 
   res
     .status(201)
-    .json({ msg: "Company Icon updated successfully", data: company });
+    .json({ msg: "Company Icon updated successfully", data: filteredIcons });
+  // .json({ msg: "Company Icon updated successfully", data: company });
 };
 
 module.exports = { createCompany, allCompanies, addCompanyIcon };
