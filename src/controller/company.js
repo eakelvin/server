@@ -57,7 +57,7 @@ const addCompanyIcon = async (req, res) => {
   }
 
   if (iconKey === "newListing") {
-    company.iconType[iconKey] = { value: iconType, date: new Date() };
+    company.iconType[iconKey] = { value: iconType, date: company.createdAt };
   } else {
     company.iconType[iconKey] = { value: iconType, note };
   }
