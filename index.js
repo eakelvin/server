@@ -17,6 +17,7 @@ const product = require("./src/routes/product");
 const file = require("./src/routes/file");
 const subscribe = require("./src/routes/subscribe");
 const company = require("./src/routes/company");
+const rss = require("./src/routes/rss");
 
 connectDatabase();
 server.use(cors());
@@ -32,6 +33,7 @@ server.use(`${api}/products`, product);
 server.use(`${api}/files`, file);
 server.use(`${api}/files`, express.static("files"));
 server.use(`${api}/company`, company);
+server.use(`${api}/rss`, rss);
 
 server.get("/", (req, res) => {
   res.send("Live Test Server");
