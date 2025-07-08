@@ -1,11 +1,12 @@
 const Parser = require("rss-parser");
 const parser = new Parser();
 
-const feedUrl = "https://netflixtechblog.com/feed";
+const feedUrl = "";
 const articleUrl = [
   "https://news.yahoo.com/rss",
   "https://news.google.com/rss",
   "https://netflixtechblog.com/feed",
+  "https://rooseveltislander.com/feed/",
 ];
 
 const getRssFeed = async (req, res) => {
